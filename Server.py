@@ -34,8 +34,7 @@ log.setLevel(logging.INFO)
 
 global IP_client
 global port_client
-IP_client = None
-port_client = None
+
 
 def run_server():
     #(value_value_value_api_requester=None, value_value_value_path=None):
@@ -121,12 +120,6 @@ def run_server():
     # ----------------------------------------------------------------------- #
     # Tcp:
     tcp_server = StartTcpServer(context, identity=identity, address=("localhost", 5020)) #, value_api_requester=value_value_api_requester, value_path=value_value_path)
-    print(tcp_server.address)
-    client_handler = tcp_server.handler
-    add_client = client_handler.client_address
-    if add_client != None:
-        IP_client = str(add_client[0])
-        port_client = str(add_client[1])
 
 
     # TCP with different framer
