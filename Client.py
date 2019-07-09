@@ -9,9 +9,11 @@ from umodbus.client import tcp
 conf.SIGNED_VALUES = True
 
 port = 5020
+#IP = 'server2.ics'
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 sock.connect(('localhost', port))
+#sock.connect((IP, port))
 
 # Returns a message or Application Data Unit (ADU) specific for doing
 # Modbus TCP/IP.

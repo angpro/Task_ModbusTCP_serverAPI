@@ -12,14 +12,14 @@ twisted is just not feasible. What follows is an example of its use:
 # import the various server implementations
 # --------------------------------------------------------------------------- #
 from pymodbus.server.sync import StartTcpServer
-from pymodbus.server.sync import StartUdpServer
-from pymodbus.server.sync import StartSerialServer
+#from pymodbus.server.sync import StartUdpServer
+#from pymodbus.server.sync import StartSerialServer
 
 from pymodbus.device import ModbusDeviceIdentification
 from pymodbus.datastore import ModbusSequentialDataBlock, ModbusSparseDataBlock
 from pymodbus.datastore import ModbusSlaveContext, ModbusServerContext
 
-from pymodbus.transaction import ModbusRtuFramer, ModbusBinaryFramer
+#from pymodbus.transaction import ModbusRtuFramer, ModbusBinaryFramer
 # --------------------------------------------------------------------------- #
 # configure the service logging
 # --------------------------------------------------------------------------- #
@@ -29,8 +29,18 @@ logging.basicConfig(format=FORMAT)
 log = logging.getLogger()
 log.setLevel(logging.INFO)
 
+# api_req = ...
+# ....
+
+global IP_client
+global port_client
+IP_client = None
+port_client = None
 
 def run_server():
+    #(value_value_value_api_requester=None, value_value_value_path=None):
+    #value_value_api_requester = value_value_value_api_requester
+    #value_value_path = value_value_value_path
     # ----------------------------------------------------------------------- #
     # initialize your data store
     # ----------------------------------------------------------------------- #
@@ -110,7 +120,14 @@ def run_server():
     # run the server you want
     # ----------------------------------------------------------------------- #
     # Tcp:
-    StartTcpServer(context, identity=identity, address=("localhost", 5020))
+    tcp_server = StartTcpServer(context, identity=identity, address=("localhost", 5020)) #, value_api_requester=value_value_api_requester, value_path=value_value_path)
+    print(tcp_server.address)
+    client_handler = tcp_server.handler
+    add_client = client_handler.client_address
+    if add_client != None:
+        IP_client = str(add_client[0])
+        port_client = str(add_client[1])
+
 
     # TCP with different framer
     # StartTcpServer(context, identity=identity,
